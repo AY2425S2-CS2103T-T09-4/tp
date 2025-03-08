@@ -360,11 +360,27 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. **Platform Compatibility**: The application should work on any _mainstream OS_ (Windows, Linux, macOS) as long as Java `17` or above is installed. *(Constraint-Platform-Independent, Constraint-Java-Version)*
 
-*{More to be added}*
+2. **Performance**: The application should be able to hold up to **1000 persons** without noticeable sluggishness in performance for typical usage. *(Scalability requirement)*
+
+3. **Typing Efficiency**: A user with above-average typing speed for regular English text (i.e., not code, not system admin commands) should be able to accomplish most tasks **faster using commands** than using the mouse. *(Constraint-Typing-Preferred, Recommendation-CLI-First)*
+
+4. **Incremental Development**: The software should be developed in **small, incremental updates** throughout the project lifecycle instead of being built in one go. *(Constraint-Incremental)*
+
+5. **Storage Format**: Data should be stored in a **human-editable text file** (e.g., JSON, CSV) rather than a database or proprietary format. *(Constraint-Human-Editable-File, Constraint-No-DBMS)*
+
+6. **Portability**: The application should **not require an installer** and should be packaged as a **single JAR file**. *(Constraint-Portable, Constraint-Single-File)*
+
+7. **No Remote Server Dependency**: The application should be **fully functional without requiring an internet connection** or an external server. *(Constraint-No-Remote-Server, Recommendation-Minimal-Network)*
+
+8. **Screen Resolution Support**: The GUI should work well on **standard screen resolutions** (1920×1080 and higher) and be usable at **lower resolutions** (1280×720). *(Constraint-Screen-Resolution)*
+
+9. **Security & Privacy**: User data should be stored **locally** and should **not be accessible to other users** during regular operations. *(Constraint-Single-User)*
+
+10. **Extensibility & Maintainability**: The application should follow **Object-Oriented Programming (OOP) principles**, making it **easy to extend and modify**. *(Constraint-OO)*
+
+*{More to be added as needed}*
 
 ### Glossary
 
