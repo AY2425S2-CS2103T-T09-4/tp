@@ -9,12 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -96,27 +94,19 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseRoles(roleSet));
     }
 
+    /**
+     * Parses {@code Collection<String> Ccas} into a {@code Set<Cca>} if {@code Ccas} is non-empty.
+     * If {@code Ccas} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Cca>} containing zero Ccas.
+     */
     private Optional<Set<Cca>> parseCcasForEdit(Collection<String> ccas) throws ParseException {
         assert ccas != null;
 
         if (ccas.isEmpty()) {
             return Optional.empty();
         }
-
-        // Check if user entered only `c/` (empty input)
-        if (ccas.size() == 1 && ccas.contains("")) {
-            return Optional.of(Collections.emptySet()); // Clear all CCAs
-        }
-
-        // Now splits CCAs by commas instead of spaces
-        Set<Cca> ccaSet = ccas.stream()
-                .flatMap(cca -> Arrays.stream(cca.split("\\s*,\\s*"))) // Splitting by comma (`,`) with optional spaces
-                .map(String::trim) // Remove any extra spaces
-                .filter(name -> !name.isEmpty()) // Ensure no empty names
-                .map(name -> new Cca(new seedu.address.model.cca.CcaName(name))) // Convert to Cca objects
-                .collect(Collectors.toSet());
-
-        return Optional.of(ccaSet);
+        Collection<String> ccaSet = ccas.size() == 1 && ccas.contains("") ? Collections.emptySet() : ccas;
+        return Optional.of(ParserUtil.parseCcas(ccaSet));
     }
 
 }

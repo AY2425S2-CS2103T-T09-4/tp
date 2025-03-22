@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_PRESIDENT;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -55,7 +54,6 @@ public class EditPersonDescriptorTest {
     }
 
     @Test
-    @Disabled
     public void toStringMethod() {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
@@ -63,7 +61,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
                 + editPersonDescriptor.getAddress().orElse(null) + ", ccainformation="
-                + editPersonDescriptor.getCcaInformation().orElse(null);
+                + editPersonDescriptor.getCcaInformation().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

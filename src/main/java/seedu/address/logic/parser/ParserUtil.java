@@ -184,22 +184,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Collection<String>} into a {@code Set<Cca>}.
-     *
-     * @param ccas The collection of CCA names as strings.
-     * @return A set of {@code Cca} objects.
-     * @throws ParseException if any CCA name is invalid.
-     */
-    public static Set<Cca> parseCcas(Collection<String> ccas) throws ParseException {
-        requireNonNull(ccas);
-        final Set<Cca> ccaSet = new HashSet<>();
-        for (String ccaName : ccas) {
-            ccaSet.add(new Cca(new CcaName(ccaName)));
-        }
-        return ccaSet;
-    }
-
-    /**
      * Parses a {@code String ccaName} into a {@code CcaName}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -215,5 +199,33 @@ public class ParserUtil {
         }
         return new CcaName(trimmedCcaName);
     }
-}
 
+    /**
+     * Parses a {@code CcaName} into a {@code Cca}.
+     *
+     * @param ccaName The {@code CcaName} object.
+     * @return A {@code Cca} object.
+     * @throws ParseException if the given {@code ccaName} is null.
+     */
+    public static Cca parseCca(CcaName ccaName) throws ParseException {
+        requireNonNull(ccaName);
+        return new Cca(ccaName);
+    }
+
+    /**
+     * Parses a {@code Collection<String>} into a {@code Set<Cca>}.
+     *
+     * @param ccas The collection of CCA names as strings.
+     * @return A set of {@code Cca} objects.
+     * @throws ParseException if any CCA name is invalid.
+     */
+    public static Set<Cca> parseCcas(Collection<String> ccas) throws ParseException {
+        requireNonNull(ccas);
+        final Set<Cca> ccaSet = new HashSet<>();
+        for (String ccaName : ccas) {
+            ccaSet.add(parseCca(parseCcaName(ccaName)));
+        }
+        return ccaSet;
+    }
+
+}

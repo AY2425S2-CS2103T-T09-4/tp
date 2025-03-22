@@ -40,7 +40,7 @@ public class Person {
      * @param phone The person's phone number.
      * @param email The person's email address.
      * @param address The person's address.
-     * @param ccaInformation The set of CCA-related information associated with the person.
+     * @param ccaInformations The set of CCA-related information associated with the person.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<CcaInformation> ccaInformations) {
         requireAllNonNull(name, phone, email, address, ccaInformations);

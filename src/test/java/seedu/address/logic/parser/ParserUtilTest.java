@@ -15,6 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.Amount;
+import seedu.address.model.cca.Cca;
+import seedu.address.model.cca.CcaName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -27,13 +29,16 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#president";
+    private static final String INVALID_CCA_NAME = "Basketball!";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "president";
-    private static final String VALID_TAG_2 = "member";
+    private static final String VALID_ROLE_1 = "president";
+    private static final String VALID_ROLE_2 = "member";
+    private static final String VALID_CCA_NAME_1 = "Basketball";
+    private static final String VALID_CCA_NAME_2 = "Soccer";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -161,14 +166,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseRole_validValueWithoutWhitespace_returnsRole() throws Exception {
-        Role expectedRole = new Role(VALID_TAG_1);
-        assertEquals(expectedRole, ParserUtil.parseRole(VALID_TAG_1));
+        Role expectedRole = new Role(VALID_ROLE_1);
+        assertEquals(expectedRole, ParserUtil.parseRole(VALID_ROLE_1));
     }
 
     @Test
     public void parseRole_validValueWithWhitespace_returnsTrimmedRole() throws Exception {
-        String roleWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Role expectedRole = new Role(VALID_TAG_1);
+        String roleWithWhitespace = WHITESPACE + VALID_ROLE_1 + WHITESPACE;
+        Role expectedRole = new Role(VALID_ROLE_1);
         assertEquals(expectedRole, ParserUtil.parseRole(roleWithWhitespace));
     }
 
@@ -179,7 +184,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseRoles_collectionWithInvalidRoles_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRoles(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoles(Arrays.asList(VALID_ROLE_1, INVALID_TAG)));
     }
 
     @Test
@@ -189,10 +194,49 @@ public class ParserUtilTest {
 
     @Test
     public void parseRoles_collectionWithValidRoles_returnsRoleSet() throws Exception {
-        Set<Role> actualRoleSet = ParserUtil.parseRoles(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Role> expectedRoleSet = new HashSet<Role>(Arrays.asList(new Role(VALID_TAG_1), new Role(VALID_TAG_2)));
+        Set<Role> actualRoleSet = ParserUtil.parseRoles(Arrays.asList(VALID_ROLE_1, VALID_ROLE_2));
+        Set<Role> expectedRoleSet = new HashSet<Role>(Arrays.asList(new Role(VALID_ROLE_1), new Role(VALID_ROLE_2)));
 
         assertEquals(expectedRoleSet, actualRoleSet);
+    }
+
+    @Test
+    public void parseCca_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCca(null));
+    }
+
+    @Test
+    public void parseCca_validCcaName_returnsCca() throws Exception {
+        CcaName validCcaName = new CcaName(VALID_CCA_NAME_1);
+        Cca expectedCca = new Cca(validCcaName);
+        assertEquals(expectedCca, ParserUtil.parseCca(validCcaName));
+    }
+
+    @Test
+    public void parseCcas_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCcas(null));
+    }
+
+    @Test
+    public void parseCcas_collectionWithInvalidCcaName_throwsParseException() {
+        assertThrows(
+                ParseException.class, () -> ParserUtil.parseCcas(Arrays.asList(VALID_CCA_NAME_1, INVALID_CCA_NAME))
+        );
+    }
+
+    @Test
+    public void parseCcas_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseCcas(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseCcas_collectionWithValidCcaNames_returnsCcaSet() throws Exception {
+        Set<Cca> actualCcaSet = ParserUtil.parseCcas(Arrays.asList(VALID_CCA_NAME_1, VALID_CCA_NAME_2));
+        Set<Cca> expectedCcaSet = new HashSet<>(
+                Arrays.asList(new Cca(new CcaName(VALID_CCA_NAME_1)), new Cca(new CcaName(VALID_CCA_NAME_2)))
+        );
+
+        assertEquals(expectedCcaSet, actualCcaSet);
     }
 
     @Test
