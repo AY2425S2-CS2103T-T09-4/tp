@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import java.util.Set;
 
 import seedu.address.logic.commands.CreateStudentCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditStudentCommand.EditPersonDescriptor;
 import seedu.address.model.cca.CcaInformation;
 import seedu.address.model.person.Person;
 

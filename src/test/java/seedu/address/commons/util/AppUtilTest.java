@@ -12,8 +12,8 @@ public class AppUtilTest {
     @Test
     public void getImage_existingImage() {
         File file = new File("src/main/resources/images/address_book_32.png");
-        System.out.println("🔍 Checking File Path: " + file.getAbsolutePath());
-        System.out.println("✅ File Exists: " + file.exists());
+        System.out.println("Checking File Path: " + file.getAbsolutePath());
+        System.out.println("File Exists: " + file.exists());
 
         assertNotNull(AppUtil.getImage("/images/address_book_32.png"));
     }
