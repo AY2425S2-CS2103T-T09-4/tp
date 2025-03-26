@@ -144,9 +144,11 @@
     },
     {
       "src": "index.md",
-      "title": "",
+      "title": "CCAttendance",
       "headings": {
-        "addressbook-level-3": "AddressBook Level-3"
+        "ccattendance": "CCAttendance",
+        "features": "Features",
+        "other-details": "Other Details"
       },
       "headingKeywords": {}
     },
