@@ -149,6 +149,7 @@ public class ModelManager implements Model {
         addressBook.setCca(target, editedCca);
     }
 
+    // TODO: move this method logic to RecordAttendanceCommand.
     @Override
     public void recordAttendance(CcaName ccaName, Person person, Amount amount)
             throws IllegalArgumentException, CcaNotFoundException {

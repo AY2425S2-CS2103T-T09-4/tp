@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a person's attendance in a specific CCA.
- * Guarantees: The attended sessions cannot exceed the total session count of the CCA.
+ * Guarantees: immutable; is valid as declared in {@link #isValidAttendance(SessionCount, SessionCount)}
  */
 public class Attendance {
 

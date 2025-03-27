@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -68,8 +69,10 @@ public class EditStudentCommandParser implements Parser<EditStudentCommand> {
         Optional<String> ccaInput = argMultimap.getValue(PREFIX_CCA);
         Optional<String> roleInput = argMultimap.getValue(PREFIX_ROLE);
 
+        Set<CcaInformation> ccaInformationSet = new HashSet<>();
+
         if (ccaInput.isPresent() && roleInput.isPresent()) {
-            Set<CcaInformation> ccaInformationSet = ParserUtil.parseCcaInformation(ccaInput.get(), roleInput.get());
+            ccaInformationSet.add(ParserUtil.parseCcaInformation(ccaInput.get(), roleInput.get()));
             editPersonDescriptor.setCcaInformation(ccaInformationSet);
         }
 

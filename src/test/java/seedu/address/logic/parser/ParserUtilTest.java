@@ -207,9 +207,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseCca_validCcaName_returnsCca() throws Exception {
-        CcaName validCcaName = new CcaName(VALID_CCA_NAME_1);
-        Cca expectedCca = new Cca(validCcaName);
-        assertEquals(expectedCca, ParserUtil.parseCca(validCcaName));
+        Cca expectedCca = new Cca(new CcaName(VALID_CCA_NAME_1));
+        assertEquals(expectedCca, ParserUtil.parseCca(VALID_CCA_NAME_1));
     }
 
     @Test

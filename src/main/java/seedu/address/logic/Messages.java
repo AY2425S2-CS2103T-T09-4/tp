@@ -26,6 +26,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_AMOUNT = "Amount should be a non-zero unsigned integer.";
     public static final String MESSAGE_CCA_NOT_FOUND = "At least one CCA in the person does not exist in the "
             + "address book.";
+    public static final String MESSAGE_ROLE_NOT_FOUND = "The role does not exist in the CCA.";
+    public static final String MESSAGE_CCA_NOT_IN_PERSON = "The CCA does not exist in the person.";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.

@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Messages;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cca.Amount;
+import seedu.address.model.cca.Attendance;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaInformation;
 import seedu.address.model.cca.CcaName;
@@ -162,25 +163,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a single CCA name and Role name into a {@code Set<CcaInformation>}.
-     * - **Only allows ONE CCA and ONE Role.**
-     * - **Defaults Attended Sessions to `0`.**
-     *
+     * Parses a single CCA name, Role name and amount into a {@code CcaInformation}.
      * @param ccaName The CCA name.
      * @param roleName The Role name.
-     * @return A set containing one {@code CcaInformation}.
+     * @return A {@code CcaInformation} object with the default {@code Attendance}.
+     * @throws ParseException
      */
-    public static Set<CcaInformation> parseCcaInformation(String ccaName, String roleName) {
-        Set<CcaInformation> ccaInformations = new HashSet<>();
+    public static CcaInformation parseCcaInformation(String ccaName, String roleName) throws ParseException {
 
-        // Create CCA and Role objects (No validation done)
-        Cca cca = new Cca(new CcaName(ccaName));
-        Role role = new Role(roleName);
+        Cca cca = parseCca(ccaName);
+        Role role = parseRole(roleName);
+        Attendance attendance = cca.createNewAttendance();
 
-        // Create CcaInformation with default attended sessions = 0
-        ccaInformations.add(new CcaInformation(cca, role, cca.createNewAttendance()));
-
-        return ccaInformations;
+        return new CcaInformation(cca, role, attendance);
     }
 
     /**
@@ -207,23 +202,22 @@ public class ParserUtil {
      * @return A {@code Cca} object.
      * @throws ParseException if the given {@code ccaName} is null.
      */
-    public static Cca parseCca(CcaName ccaName) throws ParseException {
-        requireNonNull(ccaName);
-        return new Cca(ccaName);
+    public static Cca parseCca(String ccaName) throws ParseException {
+        return new Cca(parseCcaName(ccaName));
     }
 
     /**
      * Parses a {@code Collection<String>} into a {@code Set<Cca>}.
      *
-     * @param ccas The collection of CCA names as strings.
+     * @param ccaNames The collection of CCA names as strings.
      * @return A set of {@code Cca} objects.
      * @throws ParseException if any CCA name is invalid.
      */
-    public static Set<Cca> parseCcas(Collection<String> ccas) throws ParseException {
-        requireNonNull(ccas);
+    public static Set<Cca> parseCcas(Collection<String> ccaNames) throws ParseException {
+        requireNonNull(ccaNames);
         final Set<Cca> ccaSet = new HashSet<>();
-        for (String ccaName : ccas) {
-            ccaSet.add(parseCca(parseCcaName(ccaName)));
+        for (String ccaName : ccaNames) {
+            ccaSet.add(parseCca(ccaName));
         }
         return ccaSet;
     }

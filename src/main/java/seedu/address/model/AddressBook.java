@@ -51,7 +51,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     private void validatePersonCcas(Person person) throws IllegalArgumentException {
         for (Cca cca : person.getCcas()) {
-            if (!ccas.contains(cca)) {
+            if (!hasCca(cca)) {
                 throw new IllegalArgumentException(MESSAGE_CCA_NOT_FOUND);
             }
         }

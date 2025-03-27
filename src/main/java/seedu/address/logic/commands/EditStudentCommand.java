@@ -44,7 +44,7 @@ public class EditStudentCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_ROLE + "ROLE]...\n"
+            + "[" + PREFIX_ROLE + "ROLE]... "
             + "[" + PREFIX_CCA + "CCA]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "

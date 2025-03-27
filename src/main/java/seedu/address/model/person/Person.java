@@ -16,6 +16,7 @@ import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaInformation;
 import seedu.address.model.cca.CcaName;
 import seedu.address.model.cca.exceptions.CcaNotFoundException;
+import seedu.address.model.role.Role;
 
 /**
  * Represents a Person in the address book.
@@ -87,6 +88,7 @@ public class Person {
         return address;
     }
 
+    // TODO: Remove this method after record attendance method in model is removed.
     /**
      * Returns the CCA information associated with the specified CCA.
      *
@@ -102,6 +104,22 @@ public class Person {
         throw new CcaNotFoundException();
     }
 
+    /**
+     * Returns the CCA information associated with the specified CCA.
+     * {@code cca} must exist in the person's CCA information.
+     *
+     * @param cca The CCA to retrieve information for.
+     * @return The {@code CcaInformation} object associated with the specified CCA.
+     * @throws CcaNotFoundException If the specified CCA is not found in the person's CCA information.
+     */
+    public CcaInformation getCcaInformation(Cca cca) {
+        for (CcaInformation ccaInformation : ccaInformations) {
+            if (ccaInformation.getCca().equals(cca)) {
+                return ccaInformation;
+            }
+        }
+        throw new CcaNotFoundException();
+    }
     /**
      * Returns an unmodifiable view of the person's CCA information.
      * Prevents external modifications to maintain immutability.
@@ -128,6 +146,7 @@ public class Person {
 
     /**
      * Removes the specified CCA from the person's CCA information.
+     *
      * @param cca The CCA to remove.
      * @return A new Person object with the specified CCA removed.
      */
@@ -160,6 +179,50 @@ public class Person {
     }
 
     /**
+     * Adds the specified role to the person for the specified CCA name.
+     * The current {@code role} of the person in the CCA must be the default role.
+     * {@code role} must be a valid role defined in the CCA and not the default role.
+     * {@code cca} must exist in the person's CCA information.
+     *
+     * @param cca The CCA name to add role for.
+     * @param role The role to add.
+     * @return A new Person object with the specified role added.
+     */
+    public Person addRole(Cca cca, Role role) {
+        CcaInformation oldCcaInformation = getCcaInformation(cca);
+
+        CcaInformation newCcaInformation = oldCcaInformation.addRole(role);
+
+        // Replace old ccaInformation with new ccaInformation.
+        Set<CcaInformation> newCcaInformations = ccaInformations;
+        newCcaInformations.remove(oldCcaInformation);
+        newCcaInformations.add(newCcaInformation);
+
+        return new Person(name, phone, email, address, newCcaInformations);
+    }
+
+    /**
+     * Deletes the role of the person for the specified CCA.
+     * The current {@code role} of the person in the CCA must not be the default role.
+     * {@code cca} must exist in the person's CCA information.
+     *
+     * @param cca The CCA to delete role for.
+     * @return A new Person object with the role deleted.
+     */
+    public Person deleteRole(Cca cca) {
+        CcaInformation oldCcaInformation = getCcaInformation(cca);
+
+        CcaInformation newCcaInformation = oldCcaInformation.deleteRole();
+
+        // Replace old ccaInformation with new ccaInformation.
+        Set<CcaInformation> newCcaInformations = ccaInformations;
+        newCcaInformations.remove(oldCcaInformation);
+        newCcaInformations.add(newCcaInformation);
+
+        return new Person(name, phone, email, address, newCcaInformations);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      *
@@ -173,6 +236,17 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if the person has the default role in the specified CCA.
+     *
+     * @param cca The CCA to check for default role.
+     * @return {@code true} if the person has the default role in the specified CCA, otherwise {@code false}.
+     */
+    public boolean isDefaultRoleInCca(Cca cca) {
+        CcaInformation ccaInformation = getCcaInformation(cca);
+        return ccaInformation.isDefaultRole();
     }
 
     /**
@@ -192,6 +266,7 @@ public class Person {
 
     /**
      * Returns true if the person has the specified CCA.
+     *
      * @param ccaName The CCA name to check for.
      * @return {@code true} if the person has the specified CCA, otherwise {@code false}.
      */
