@@ -39,7 +39,8 @@ public class PersonUtil {
         // Extract CCA and role details
         person.getCcaInformations().forEach(ccaInfo -> {
             sb.append(PREFIX_CCA).append(ccaInfo.getCca().getCcaName().fullCcaName).append(" ");
-            sb.append(PREFIX_ROLE).append(ccaInfo.getRole().roleName).append(" ");
+            sb.append(PREFIX_ROLE).append(ccaInfo.getRole().map(role -> role.roleName)
+                    .orElse("No role")).append(" ");
         });
         return sb.toString();
     }
@@ -62,7 +63,8 @@ public class PersonUtil {
             } else {
                 ccaInfoSet.forEach(ccaInfo -> {
                     sb.append(PREFIX_CCA).append(ccaInfo.getCca().getCcaName().fullCcaName).append(" ");
-                    sb.append(PREFIX_ROLE).append(ccaInfo.getRole().roleName).append(" ");
+                    sb.append(PREFIX_ROLE).append(ccaInfo.getRole().map(role -> role.roleName)
+                            .orElse("No role")).append(" ");
                 });
             }
         }

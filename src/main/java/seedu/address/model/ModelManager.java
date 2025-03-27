@@ -145,8 +145,16 @@ public class ModelManager implements Model {
     @Override
     public void setCca(Cca target, Cca editedCca) {
         requireAllNonNull(target, editedCca);
-
         addressBook.setCca(target, editedCca);
+
+        // Checks if existing persons in the addressbook contain the cca to be replaced, thus replacing
+        // their corresponding cca with the new cca.
+        for (Person person : this.addressBook.getPersonList()) {
+            if (person.hasCca(target)) {
+                Person newPerson = person.updateCca(target, editedCca);
+                addressBook.setPerson(person, newPerson);
+            }
+        }
     }
 
     @Override

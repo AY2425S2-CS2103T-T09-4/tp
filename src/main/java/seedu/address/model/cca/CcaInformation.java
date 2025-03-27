@@ -2,6 +2,8 @@ package seedu.address.model.cca;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Optional;
+
 import seedu.address.model.role.Role;
 
 /**
@@ -11,7 +13,7 @@ import seedu.address.model.role.Role;
 public class CcaInformation {
 
     private final Cca cca;
-    private final Role role;
+    private final Optional<Role> role;
     private final Attendance attendance;
 
     /**
@@ -21,7 +23,7 @@ public class CcaInformation {
      * @param role The role the person holds in the specified CCA.
      * @param attendance The attendance record of the person for the CCA.
      */
-    public CcaInformation(Cca cca, Role role, Attendance attendance) {
+    public CcaInformation(Cca cca, Optional<Role> role, Attendance attendance) {
         requireAllNonNull(cca, role, attendance);
         this.cca = cca;
         this.role = role;
@@ -42,7 +44,7 @@ public class CcaInformation {
      *
      * @return The {@code Role} object.
      */
-    public Role getRole() {
+    public Optional<Role> getRole() {
         return role;
     }
 
@@ -82,6 +84,7 @@ public class CcaInformation {
 
     @Override
     public String toString() {
-        return cca + " | Role: " + role + " | " + attendance;
+        String roleStr = role.map(Role::toString).orElse("[No Role]");
+        return cca + " | Role: " + roleStr + " | " + attendance;
     }
 }

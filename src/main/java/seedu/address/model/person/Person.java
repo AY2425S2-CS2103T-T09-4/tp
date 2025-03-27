@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -16,6 +17,7 @@ import seedu.address.model.cca.Cca;
 import seedu.address.model.cca.CcaInformation;
 import seedu.address.model.cca.CcaName;
 import seedu.address.model.cca.exceptions.CcaNotFoundException;
+import seedu.address.model.role.Role;
 
 /**
  * Represents a Person in the address book.
@@ -153,6 +155,35 @@ public class Person {
         Attendance newAttendance = attendance.attend(amount);
         CcaInformation newCcaInformation = new CcaInformation(ccaInformation.getCca(), ccaInformation.getRole(),
                 newAttendance);
+        Set<CcaInformation> newCcaInformations = new HashSet<>(ccaInformations);
+        newCcaInformations.remove(ccaInformation);
+        newCcaInformations.add(newCcaInformation);
+        return new Person(name, phone, email, address, newCcaInformations);
+    }
+
+    /**
+     * Updates the specified CCA information in the person's record with the edited CCA details.
+     * This includes updating the total number of sessions while preserving the existing role
+     * and sessions attended.
+     *
+     * @param target The original CCA to be updated.
+     * @param editedCca The edited CCA containing the new details.
+     * @return A new {@code Person} object with the updated CCA information.
+     * @throws CcaNotFoundException If the person is not enrolled in the specified CCA.
+     */
+    public Person updateCca(Cca target, Cca editedCca) {
+        CcaInformation ccaInformation = getCcaInformation(target.getCcaName());
+
+        Optional<Role> currentRole = ccaInformation.getRole();
+
+        // Checks if the person's current role in the cca exists in the edited cca
+        Optional<Role> newRole = currentRole.filter(editedCca.getRoles()::contains);
+
+        Attendance newAttendance = new Attendance(
+                ccaInformation.getAttendance().getSessionsAttended(), editedCca.getTotalSessions());
+
+        CcaInformation newCcaInformation = new CcaInformation(editedCca, newRole, newAttendance);
+
         Set<CcaInformation> newCcaInformations = new HashSet<>(ccaInformations);
         newCcaInformations.remove(ccaInformation);
         newCcaInformations.add(newCcaInformation);

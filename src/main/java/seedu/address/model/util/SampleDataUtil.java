@@ -2,6 +2,7 @@ package seedu.address.model.util;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -117,7 +118,9 @@ public class SampleDataUtil {
 
             Cca existingCca = getCcaByName(uniqueCcaList, new CcaName(ccaName)); //Check if the cca exists
             int totalSessions = existingCca.getTotalSessions().getSessionCount();
-            Role roleReference = findRoleInCca(existingCca, roleName); // Check if the role exists in the CCA
+
+            // Check if the role exists in the cca
+            Optional<Role> roleReference = Optional.ofNullable(findRoleInCca(existingCca, roleName));
 
             // Create Attendance object
             Attendance attendance = new Attendance(new SessionCount(attendedSessions), new SessionCount(totalSessions));

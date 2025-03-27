@@ -150,7 +150,7 @@ public class EditStudentCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code roles} is used internally.
+         * A defensive copy of {@code ccaInformation} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);

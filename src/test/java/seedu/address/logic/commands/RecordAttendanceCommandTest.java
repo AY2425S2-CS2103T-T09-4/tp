@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,7 @@ public class RecordAttendanceCommandTest {
 
         Cca validCca = BASKETBALL;
         Set<CcaInformation> ccaInformations = new HashSet<>();
-        ccaInformations.add(new CcaInformation(validCca, MEMBER, validCca.createNewAttendance()));
+        ccaInformations.add(new CcaInformation(validCca, Optional.of(MEMBER), validCca.createNewAttendance()));
         Person validPerson = ALICE;
         modelStub.addCca(validCca);
         modelStub.addPerson(validPerson);
@@ -58,7 +59,7 @@ public class RecordAttendanceCommandTest {
 
         Cca validCca = BASKETBALL;
         Set<CcaInformation> ccaInformations = new HashSet<>();
-        ccaInformations.add(new CcaInformation(validCca, MEMBER, validCca.createNewAttendance()));
+        ccaInformations.add(new CcaInformation(validCca, Optional.of(MEMBER), validCca.createNewAttendance()));
         Person validPerson = ALICE;
         modelStub.addCca(validCca);
         modelStub.addPerson(validPerson);

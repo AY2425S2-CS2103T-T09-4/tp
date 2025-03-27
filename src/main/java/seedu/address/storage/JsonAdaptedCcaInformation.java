@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -41,7 +43,7 @@ class JsonAdaptedCcaInformation {
      */
     public JsonAdaptedCcaInformation(CcaInformation source) {
         this.cca = new JsonAdaptedCca(source.getCca());
-        this.role = new JsonAdaptedRole(source.getRole());
+        this.role = source.getRole().map(JsonAdaptedRole::new).orElse(null);
         this.attendedSessions = source.getAttendance().getSessionsAttended().getSessionCount();
         this.totalSessions = source.getAttendance().getTotalSessions().getSessionCount();
     }
@@ -60,7 +62,7 @@ class JsonAdaptedCcaInformation {
         }
 
         final Cca modelCca = cca.toModelType();
-        final Role modelRole = role.toModelType();
+        final Optional<Role> modelRole = role != null ? Optional.of(role.toModelType()) : Optional.empty();
 
         final int derivedTotalSessions = modelCca.getTotalSessions().getSessionCount();
 
