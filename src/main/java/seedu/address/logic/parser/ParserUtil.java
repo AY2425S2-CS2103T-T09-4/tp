@@ -170,17 +170,29 @@ public class ParserUtil {
      * @param roleName The Role name.
      * @return A set containing one {@code CcaInformation}.
      */
-    public static Set<CcaInformation> parseCcaInformation(String ccaName, String roleName) {
-        Set<CcaInformation> ccaInformations = new HashSet<>();
+    public static Set<CcaInformation> parseCcaInformation(String ccaName, String roleName) throws ParseException {
+        CcaName parsedCcaName = parseCcaName(ccaName);
 
-        // Create CCA and Role objects (No validation done)
-        Cca cca = new Cca(new CcaName(ccaName));
+        Cca cca = new Cca(parsedCcaName);
         Role role = new Role(roleName);
 
-        // Create CcaInformation with default attended sessions = 0
+        Set<CcaInformation> ccaInformations = new HashSet<>();
         ccaInformations.add(new CcaInformation(cca, role, cca.createNewAttendance()));
-
         return ccaInformations;
+    }
+
+    /**
+     * Parses a {@code String ccaName} into a {@code Set<CcaInformation>} with a default role.
+     * This method is used when only the CCA name is provided.
+     *
+     * @param ccaName The CCA name.
+     * @return A set containing one {@code CcaInformation} with a default role.
+     */
+    public static Set<CcaInformation> parseCcaInformation(String ccaName) throws ParseException {
+        // This is an overloaded version of the method parseCcaInformation
+        // Define a default role that will be used since role editing is not allowed.
+        String defaultRole = "member"; // Change this if a different default is required.
+        return parseCcaInformation(ccaName, defaultRole);
     }
 
     /**
@@ -194,6 +206,7 @@ public class ParserUtil {
     public static CcaName parseCcaName(String ccaName) throws ParseException {
         requireNonNull(ccaName);
         String trimmedCcaName = ccaName.trim();
+
         if (!CcaName.isValidCcaName(trimmedCcaName)) {
             throw new ParseException(CcaName.MESSAGE_CONSTRAINTS);
         }

@@ -47,6 +47,7 @@ public class EditStudentCommandParserTest {
 
     private EditStudentCommandParser parser = new EditStudentCommandParser();
 
+
     @Test
     public void parse_missingParts_failure() {
         // no index specified
@@ -92,13 +93,23 @@ public class EditStudentCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + ROLE_DESC_PRESIDENT
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + ROLE_DESC_MEMBER;
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).build();
+        // Removed ROLE_DESC_PRESIDENT and ROLE_DESC_MEMBER from the user input
+        String userInput = targetIndex.getOneBased()
+                + PHONE_DESC_BOB
+                + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY
+                + NAME_DESC_AMY;
+
+        // Build the descriptor without a role
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_AMY)
+                .withAddress(VALID_ADDRESS_AMY)
+                .build();
+
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
