@@ -127,6 +127,7 @@
         "adding-a-cca-create-c": "Adding a CCA: create_c",
         "listing-all-persons-list": "Listing all persons : list",
         "editing-a-student-edit-s": "Editing a student : edit_s",
+        "editing-a-cca-edit-c": "Editing a cca : edit_c",
         "recording-attendance-attend": "Recording attendance : attend",
         "locating-students-by-name-find": "Locating students by name: find",
         "deleting-a-student-delete-s": "Deleting a student : delete_s",
