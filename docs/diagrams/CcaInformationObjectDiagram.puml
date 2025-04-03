@@ -8,7 +8,7 @@ object "<u>sessionAttended:SessionCount</u>" as sessionAttended {
 }
 
 object "<u>totalSessions:SessionCount</u>" as totalSessions {
-  totalSessions = 11
+  amount = 11
 }
 
 object "<u>president:Role</u>" as president {
@@ -35,4 +35,5 @@ basketballCca --> president
 basketballCca --> member
 attendance --> totalSessions
 attendance --> sessionAttended
+member -[hidden]left-> president
 @enduml

@@ -197,8 +197,8 @@ public class ParserUtil {
     public static SessionCount parseTotalSessions(String totalSessions) throws ParseException {
         requireNonNull(totalSessions);
         String trimmedTotalSessions = totalSessions.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedTotalSessions)) {
-            throw new ParseException(Messages.MESSAGE_INVALID_AMOUNT);
+        if (!StringUtil.isNonNegativeUnsignedInteger(trimmedTotalSessions)) {
+            throw new ParseException(Messages.MESSAGE_INVALID_AMOUNT_NON_NEGATIVE);
         }
         return new SessionCount(Integer.parseInt(trimmedTotalSessions));
     }

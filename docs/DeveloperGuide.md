@@ -13,7 +13,8 @@ pageNav: 3
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+* Codebase adapted from AddressBook3 
+* Libraries used: JavaFX, Jackson, JUnit5
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,9 +25,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-
-<puml src="diagrams/EditActivityDiagram.puml" width="450" />
-
 
 ### Architecture
 
@@ -121,7 +119,7 @@ The sequence diagram below illustrates the simplified interactions within the `L
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2425S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="650" />
 
 
 The `Model` component,
@@ -132,21 +130,23 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-#### Cca Related Classes
+#### CcaInformation Attribute Classes
 
+<box type="info" seamless>
 <puml src="diagrams/CcaInformationClassesDiagram.puml" width="450" />    
 
-The `AddressBook` contains a list of `Cca` objects, and each `Student` references a `CcaInformation` object that contains a unique `Cca`. By storing each CCA only once in the AddressBook and having each Student reference it through a CcaInformation object, it avoids duplicating CCA data across students. The `Addressbook` also ensures that each `CcaInformation` can have a unique `Cca`, preventing duplicate CCAs in the system.
+**Note:** The `AddressBook` contains a list of `Cca` objects, and each `Student` references a `CcaInformation` object that contains a unique `Cca`. By storing each CCA only once in the AddressBook and having each Student reference it through a CcaInformation object, it avoids duplicating CCA data across students. The `Addressbook` also ensures that each `CcaInformation` can have a unique `Cca`, preventing duplicate CCAs in the system.
 
 For example, the following object diagrams can be formed:
 
-<puml src="diagrams/CcaInformationObjectDiagram.puml" width="450" />
+<puml src="diagrams/CcaInformationObjectDiagram.puml" width="650" />
+<box/>
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2425S2-CS2103T-T09-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<puml src="diagrams/StorageClassDiagram.puml" width="550" />
+<puml src="diagrams/StorageClassDiagram.puml" width="650" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
@@ -183,7 +183,7 @@ The Add Student feature allows users to add a new student in the address book gi
 
 The following shows the activity diagram when the user executes the `create_s` command:
 
-<puml src="diagrams/CreateStudentActivityDiagram.puml" width="450" />
+<puml src="diagrams/CreateStudentActivityDiagram.puml" width="600" />
 
 ### **Edit CCA Feature**
 
@@ -191,7 +191,7 @@ The Edit CCA feature allows users to edit an existing CCA in the address book wi
 
 The following shows the activity diagram when the user executes the `edit_c` command:
 
-<puml src="diagrams/EditCcaActivityDiagram.puml" width="450" />
+<puml src="diagrams/EditCcaActivityDiagram.puml" width="600" />
 
 ### **Add Role to Student Feature**
 
@@ -199,7 +199,7 @@ The Add role to student feature allows users to add a role to a student in a CCA
 
 The following shows the activity diagram when the user executes the `add_r` command:
 
-<puml src="diagrams/AddRoleActivityDiagram.puml" width="450" />
+<puml src="diagrams/AddRoleActivityDiagram.puml" width="600" />
 
 ### **Record Attendance to Student Feature**
 
@@ -207,7 +207,7 @@ The record attendance feature allows users to add increment the attendance of a 
 
 The following shows the activity diagram when the user executes the `attend` command:
 
-<puml src="diagrams/RecordAttendanceActivityDiagram.puml" width="450" />
+<puml src="diagrams/RecordAttendanceActivityDiagram.puml" width="600" />
 
 --------------------------------------------------------------------------------------------------------------------
 

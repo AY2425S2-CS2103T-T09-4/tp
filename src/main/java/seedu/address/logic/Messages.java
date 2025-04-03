@@ -27,6 +27,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the student list";
     public static final String MESSAGE_DUPLICATE_CCA = "This CCA already exists in the CCA list";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount should be a non-zero unsigned integer";
+    public static final String MESSAGE_INVALID_AMOUNT_NON_NEGATIVE = "Amount should be a non-negative unsigned integer";
     public static final String MESSAGE_CCA_NOT_FOUND = "The CCA does not exist in the CCA list";
     public static final String MESSAGE_ROLE_NOT_FOUND = "The role does not exist in the CCA";
     public static final String MESSAGE_CCA_NOT_IN_PERSON = "The student is not in the CCA";
