@@ -121,6 +121,9 @@
       "headings": {
         "ccattendance-user-guide": "CCAttendance User Guide",
         "quick-start": "Quick start",
+        "important-details": "Important Details",
+        "student": "Student",
+        "cca": "CCA",
         "features": "Features",
         "viewing-help-help": "Viewing help : help",
         "listing-all-students-list": "Listing all students : list",
