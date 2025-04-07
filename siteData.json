@@ -40,6 +40,7 @@
       "title": "Developer Guide",
       "headings": {
         "ab-3-developer-guide": "AB-3 Developer Guide",
+        "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
         "architecture": "Architecture",
@@ -49,11 +50,6 @@
         "storage-component": "Storage component",
         "common-classes": "Common classes",
         "documentation-logging-testing-configuration-dev-ops": "Documentation, logging, testing, configuration, dev-ops",
-        "implementation": "Implementation",
-        "create-student-feature": "Create Student Feature",
-        "edit-cca-feature": "Edit CCA Feature",
-        "add-role-to-student-feature": "Add Role to Student Feature",
-        "record-attendance-to-student-feature": "Record Attendance to Student Feature",
         "appendix-requirements": "Appendix: Requirements",
         "product-scope": "Product scope",
         "user-stories": "User stories",
@@ -78,7 +74,8 @@
         "removing-a-cca-from-a-student": "Removing a CCA from a student",
         "adding-a-role-to-a-student-in-a-cca": "Adding a role to a student in a CCA",
         "removing-a-role-from-a-student-in-a-cca": "Removing a role from a student in a CCA",
-        "saving-data": "Saving data"
+        "saving-data": "Saving data",
+        "appendix-planned-enhancements": "Appendix: Planned Enhancements"
       },
       "headingKeywords": {}
     },
@@ -128,8 +125,8 @@
         "viewing-help-help": "Viewing help : help",
         "listing-all-students-list": "Listing all students : list",
         "locating-students-by-name-find": "Locating students by name: find",
-        "adding-a-student-create-s": "Adding a student: create_s",
-        "adding-a-cca-create-c": "Adding a CCA: create_c",
+        "creating-a-student-create-s": "Creating a student: create_s",
+        "creating-a-cca-create-c": "Creating a CCA: create_c",
         "editing-a-student-s-basic-details-edit-s": "Editing a student's basic details : edit_s",
         "editing-a-cca-edit-c": "Editing a CCA : edit_c",
         "adding-a-cca-to-a-student-add-c": "Adding a CCA to a student: add_c",
