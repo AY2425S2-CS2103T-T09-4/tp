@@ -518,6 +518,6 @@ with(this){return _c('p',[_c('strong',[_v("Team Size")]),_v(": 4 People")])}
 with(this){return _c('ol',[_c('li',[_v("Some of the current error messages (e.g., indicating that an index must be a positive integer) are not specific enough to help the user understand what went wrong. Specifically, when the user enters an invalid index, the error message should clearly state that the index must be a positive integer and must not exceed "),_c('code',{pre:true,attrs:{"class":"hljs inline no-lang"}},[_v("Integer.MAX_VALUE")]),_v(". However, the current error message simply indicates an invalid command format, which is too generic and not very helpful. Later, we can enhance these error messages to be more detailed and user-friendly.")])])}
 },function anonymous(
 ) {
-with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.6.0")]),_v(", generated on Tue, 8 Apr 2025, 1:39:53 GMT+8]")])])])}
+with(this){return _c('footer',[_c('div',{staticClass:"text-center"},[_c('small',[_v("["),_c('span',[_c('strong',[_v("Powered by")])]),_v(" "),_c('img',{attrs:{"src":"https://markbind.org/favicon.ico","width":"30"}}),_v(" "),_c('a',{attrs:{"href":"https://markbind.org/"}},[_v("MarkBind 5.6.0")]),_v(", generated on Tue, 8 Apr 2025, 11:38:46 GMT+8]")])])])}
 }];
   
