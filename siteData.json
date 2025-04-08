@@ -58,7 +58,7 @@
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
-        "listing-a-student": "Listing a student",
+        "listing-all-students": "Listing all students",
         "clearing-all-students-and-ccas": "Clearing all students and CCAs",
         "finding-a-student": "Finding a student",
         "creating-a-student": "Creating a student",
@@ -74,6 +74,7 @@
         "adding-a-role-to-a-student-in-a-cca": "Adding a role to a student in a CCA",
         "removing-a-role-from-a-student-in-a-cca": "Removing a role from a student in a CCA",
         "saving-data": "Saving data",
+        "appendix-effort": "Appendix: Effort",
         "appendix-planned-enhancements": "Appendix: Planned Enhancements"
       },
       "headingKeywords": {}
